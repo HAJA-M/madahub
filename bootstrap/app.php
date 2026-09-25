@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Railway (et la plupart des PaaS) terminent le TLS sur leur proxy et
+        // transmettent en HTTP en interne : on fait confiance à ce proxy pour
+        // que Laravel génère des URLs (assets, redirections) en https://.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
