@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_mysql mbstring bcmath zip gd \
     && a2enmod rewrite \
+    && a2dismod mpm_event 2>/dev/null; a2enmod mpm_prefork \
     && rm -rf /var/lib/apt/lists/*
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
