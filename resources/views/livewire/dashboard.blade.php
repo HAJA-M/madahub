@@ -75,26 +75,26 @@ new #[Layout('layouts.app')] class extends Component
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-5">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Chiffre d'affaires (ce mois)</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ __("Chiffre d'affaires (ce mois)") }}</p>
                     <p class="mt-1 text-2xl font-semibold text-gray-900 dark:text-gray-100">{{ number_format($chiffreAffairesMois, 0, ',', ' ') }} Ar</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-5">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Bénéfice estimé (ce mois)</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Bénéfice estimé (ce mois)') }}</p>
                     <p class="mt-1 text-2xl font-semibold text-brand-blue-700">{{ number_format($beneficeMois, 0, ',', ' ') }} Ar</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-5">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Factures validées (ce mois)</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Factures validées (ce mois)') }}</p>
                     <p class="mt-1 text-2xl font-semibold text-gray-900 dark:text-gray-100">{{ $nombreVentesMois }}</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-5">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Produits en alerte stock</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Produits en alerte stock') }}</p>
                     <p class="mt-1 text-2xl font-semibold {{ $produitsEnAlerte > 0 ? 'text-red-600' : 'text-gray-900 dark:text-gray-100' }}">{{ $produitsEnAlerte }}</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
-                    <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-4">Évolution du chiffre d'affaires (6 derniers mois)</h3>
+                    <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-4">{{ __("Évolution du chiffre d'affaires (6 derniers mois)") }}</h3>
                     <div class="flex items-end gap-4 h-48">
                         @foreach ($evolutionMensuelle as $point)
                             <div class="flex-1 flex flex-col items-center justify-end h-full gap-2">
@@ -107,32 +107,32 @@ new #[Layout('layouts.app')] class extends Component
                 </div>
 
                 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
-                    <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-4">Produits populaires</h3>
+                    <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-4">{{ __('Produits populaires') }}</h3>
                     @forelse ($produitsPopulaires as $produit)
                         <div class="flex items-center justify-between py-2 border-b border-gray-100 dark:border-gray-700 last:border-0">
                             <div>
                                 <p class="text-sm font-medium text-gray-900 dark:text-gray-100">{{ $produit->produit_nom }}</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">{{ $produit->total_quantite }} vendus</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">{{ __(':n vendus', ['n' => $produit->total_quantite]) }}</p>
                             </div>
                             <p class="text-sm text-gray-500 dark:text-gray-400">{{ number_format($produit->total_ventes, 0, ',', ' ') }} Ar</p>
                         </div>
                     @empty
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Aucune vente validée pour le moment.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Aucune vente validée pour le moment.') }}</p>
                     @endforelse
                 </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <a href="{{ route('clients.index') }}" wire:navigate class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-5 hover:shadow-md transition">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Clients</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Clients') }}</p>
                     <p class="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">{{ $clientsCount }}</p>
                 </a>
                 <a href="{{ route('ventes.index', ['type' => 'devis']) }}" wire:navigate class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-5 hover:shadow-md transition">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Devis en attente</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Devis en attente') }}</p>
                     <p class="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">{{ $devisEnAttente }}</p>
                 </a>
                 <a href="{{ route('stock.index') }}" wire:navigate class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-5 hover:shadow-md transition">
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Voir le stock</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Voir le stock') }}</p>
                     <p class="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">&rarr;</p>
                 </a>
             </div>

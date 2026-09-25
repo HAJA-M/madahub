@@ -46,7 +46,7 @@ new #[Layout('layouts.app')] class extends Component
             Client::create($donnees);
         }
 
-        session()->flash('succes', 'Client enregistré.');
+        session()->flash('succes', __('Client enregistré.'));
         $this->redirect(route('clients.index'), navigate: true);
     }
 }; ?>
@@ -54,7 +54,7 @@ new #[Layout('layouts.app')] class extends Component
 <div>
     <x-slot:header>
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ $client ? 'Modifier le client' : 'Nouveau client' }}
+            {{ $client ? __('Modifier le client') : __('Nouveau client') }}
         </h2>
     </x-slot:header>
 
@@ -62,50 +62,50 @@ new #[Layout('layouts.app')] class extends Component
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             <form wire:submit="enregistrer" class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 space-y-5">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom *</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Nom') }} *</label>
                     <input type="text" wire:model="nom"
                            class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                     @error('nom') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Type') }}</label>
                     <select wire:model="type" class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
-                        <option value="particulier">Particulier</option>
-                        <option value="entreprise">Entreprise</option>
+                        <option value="particulier">{{ __('Particulier') }}</option>
+                        <option value="entreprise">{{ __('Entreprise') }}</option>
                     </select>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Email') }}</label>
                         <input type="email" wire:model="email"
                                class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                         @error('email') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Téléphone</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Téléphone') }}</label>
                         <input type="text" wire:model="telephone" placeholder="034 xx xxx xx"
                                class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Adresse</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Adresse') }}</label>
                     <input type="text" wire:model="adresse"
                            class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Notes</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Notes') }}</label>
                     <textarea wire:model="notes" rows="3"
                               class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500"></textarea>
                 </div>
 
                 <div class="flex items-center justify-end gap-3">
-                    <a href="{{ route('clients.index') }}" wire:navigate class="text-sm text-gray-500 hover:underline">Annuler</a>
+                    <a href="{{ route('clients.index') }}" wire:navigate class="text-sm text-gray-500 hover:underline">{{ __('Annuler') }}</a>
                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800">
-                        Enregistrer
+                        {{ __('Enregistrer') }}
                     </button>
                 </div>
             </form>

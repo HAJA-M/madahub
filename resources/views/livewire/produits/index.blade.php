@@ -51,7 +51,7 @@ new #[Layout('layouts.app')] class extends Component
     {
         Produit::findOrFail($id)->delete();
         $this->confirmationSuppression = null;
-        session()->flash('succes', 'Produit supprimé.');
+        session()->flash('succes', __('Produit supprimé.'));
     }
 }; ?>
 
@@ -63,7 +63,7 @@ new #[Layout('layouts.app')] class extends Component
             </h2>
             <a href="{{ route('produits.create') }}" wire:navigate
                class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800 focus:outline-none transition">
-                + Nouveau produit
+                + {{ __('Nouveau produit') }}
             </a>
         </div>
     </x-slot:header>
@@ -78,11 +78,11 @@ new #[Layout('layouts.app')] class extends Component
 
             <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-4 flex flex-col sm:flex-row gap-3">
                 <input type="text" wire:model.live.debounce.300ms="recherche"
-                       placeholder="Rechercher un produit (nom, référence)..."
+                       placeholder="{{ __('Rechercher un produit (nom, référence)...') }}"
                        class="flex-1 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                 <label class="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                     <input type="checkbox" wire:model.live="alerteUniquement" class="rounded border-gray-300 text-brand-blue-700 focus:ring-brand-blue-500">
-                    Alertes stock uniquement
+                    {{ __('Alertes stock uniquement') }}
                 </label>
             </div>
 
@@ -90,10 +90,10 @@ new #[Layout('layouts.app')] class extends Component
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead class="bg-gray-50 dark:bg-gray-900/50">
                         <tr>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Référence</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Nom</th>
-                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Prix vente</th>
-                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Stock</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">{{ __('Référence') }}</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">{{ __('Nom') }}</th>
+                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">{{ __('Prix vente') }}</th>
+                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">{{ __('Stock') }}</th>
                             <th class="px-4 py-3"></th>
                         </tr>
                     </thead>
@@ -108,23 +108,23 @@ new #[Layout('layouts.app')] class extends Component
                                         {{ $produit->quantite_stock }} {{ $produit->unite }}
                                     </span>
                                     @if ($produit->en_alerte)
-                                        <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300">alerte</span>
+                                        <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300">{{ __('alerte') }}</span>
                                     @endif
                                 </td>
                                 <td class="px-4 py-3 text-right text-sm space-x-2 whitespace-nowrap">
-                                    <a href="{{ route('produits.edit', $produit) }}" wire:navigate class="text-brand-blue-700 hover:underline">Modifier</a>
+                                    <a href="{{ route('produits.edit', $produit) }}" wire:navigate class="text-brand-blue-700 hover:underline">{{ __('Modifier') }}</a>
                                     @if ($confirmationSuppression === $produit->id)
-                                        <button wire:click="supprimer({{ $produit->id }})" class="text-red-600 hover:underline">Confirmer ?</button>
-                                        <button wire:click="$set('confirmationSuppression', null)" class="text-gray-400 hover:underline">Annuler</button>
+                                        <button wire:click="supprimer({{ $produit->id }})" class="text-red-600 hover:underline">{{ __('Confirmer ?') }}</button>
+                                        <button wire:click="$set('confirmationSuppression', null)" class="text-gray-400 hover:underline">{{ __('Annuler') }}</button>
                                     @else
-                                        <button wire:click="demanderSuppression({{ $produit->id }})" class="text-gray-400 hover:text-red-600">Supprimer</button>
+                                        <button wire:click="demanderSuppression({{ $produit->id }})" class="text-gray-400 hover:text-red-600">{{ __('Supprimer') }}</button>
                                     @endif
                                 </td>
                             </tr>
                         @empty
                             <tr>
                                 <td colspan="5" class="px-4 py-8 text-center text-sm text-gray-500 dark:text-gray-400">
-                                    Aucun produit pour le moment.
+                                    {{ __('Aucun produit pour le moment.') }}
                                 </td>
                             </tr>
                         @endforelse

@@ -52,7 +52,7 @@ new #[Layout('layouts.app')] class extends Component
             Produit::create($donnees);
         }
 
-        session()->flash('succes', 'Produit enregistré.');
+        session()->flash('succes', __('Produit enregistré.'));
         $this->redirect(route('produits.index'), navigate: true);
     }
 }; ?>
@@ -60,7 +60,7 @@ new #[Layout('layouts.app')] class extends Component
 <div>
     <x-slot:header>
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ $produit ? 'Modifier le produit' : 'Nouveau produit' }}
+            {{ $produit ? __('Modifier le produit') : __('Nouveau produit') }}
         </h2>
     </x-slot:header>
 
@@ -69,13 +69,13 @@ new #[Layout('layouts.app')] class extends Component
             <form wire:submit="enregistrer" class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 space-y-5">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom *</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Nom') }} *</label>
                         <input type="text" wire:model="nom"
                                class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                         @error('nom') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Référence (SKU) *</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Référence (SKU)') }} *</label>
                         <input type="text" wire:model="reference"
                                class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                         @error('reference') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
@@ -83,26 +83,26 @@ new #[Layout('layouts.app')] class extends Component
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Description') }}</label>
                     <textarea wire:model="description" rows="2"
                               class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500"></textarea>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Prix d'achat (Ar) *</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __("Prix d'achat (Ar)") }} *</label>
                         <input type="number" step="0.01" wire:model="prix_achat"
                                class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                         @error('prix_achat') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Prix de vente (Ar) *</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Prix de vente (Ar)') }} *</label>
                         <input type="number" step="0.01" wire:model="prix_vente"
                                class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                         @error('prix_vente') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Unité</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Unité') }}</label>
                         <input type="text" wire:model="unite"
                                class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                     </div>
@@ -110,16 +110,16 @@ new #[Layout('layouts.app')] class extends Component
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Quantité en stock *</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Quantité en stock') }} *</label>
                         <input type="number" wire:model="quantite_stock" {{ $produit ? 'disabled' : '' }}
                                class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 disabled:opacity-50">
                         @error('quantite_stock') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                         @if ($produit)
-                            <p class="mt-1 text-xs text-gray-400">Ajustez le stock depuis la page Stock.</p>
+                            <p class="mt-1 text-xs text-gray-400">{{ __('Ajustez le stock depuis la page Stock.') }}</p>
                         @endif
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Seuil d'alerte *</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __("Seuil d'alerte") }} *</label>
                         <input type="number" wire:model="seuil_alerte"
                                class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                         @error('seuil_alerte') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
@@ -127,9 +127,9 @@ new #[Layout('layouts.app')] class extends Component
                 </div>
 
                 <div class="flex items-center justify-end gap-3">
-                    <a href="{{ route('produits.index') }}" wire:navigate class="text-sm text-gray-500 hover:underline">Annuler</a>
+                    <a href="{{ route('produits.index') }}" wire:navigate class="text-sm text-gray-500 hover:underline">{{ __('Annuler') }}</a>
                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800">
-                        Enregistrer
+                        {{ __('Enregistrer') }}
                     </button>
                 </div>
             </form>

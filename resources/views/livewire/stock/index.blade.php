@@ -49,7 +49,7 @@ new #[Layout('layouts.app')] class extends Component
         $quantite = (int) $this->ajustementQuantite;
 
         if ($this->ajustementType === 'sortie' && $quantite > $produit->quantite_stock) {
-            $this->addError('ajustementQuantite', 'Quantité supérieure au stock disponible ('.$produit->quantite_stock.').');
+            $this->addError('ajustementQuantite', __('Quantité supérieure au stock disponible (:n).', ['n' => $produit->quantite_stock]));
             return;
         }
 
@@ -63,12 +63,12 @@ new #[Layout('layouts.app')] class extends Component
             'produit_id' => $produit->id,
             'type' => $this->ajustementType,
             'quantite' => $quantite,
-            'motif' => $this->ajustementMotif ?: 'Ajustement manuel',
+            'motif' => $this->ajustementMotif ?: __('Ajustement manuel'),
             'user_id' => auth()->id(),
         ]);
 
         $this->produitAjustementId = null;
-        session()->flash('succes', 'Stock ajusté pour '.$produit->nom.'.');
+        session()->flash('succes', __('Stock ajusté pour :nom.', ['nom' => $produit->nom]));
     }
 }; ?>
 
@@ -90,7 +90,7 @@ new #[Layout('layouts.app')] class extends Component
             @if ($produitsEnAlerte->isNotEmpty())
                 <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
                     <p class="text-sm font-semibold text-red-700 dark:text-red-300 mb-2">
-                        {{ $produitsEnAlerte->count() }} produit(s) sous le seuil d'alerte
+                        {{ __(":n produit(s) sous le seuil d'alerte", ['n' => $produitsEnAlerte->count()]) }}
                     </p>
                     <div class="flex flex-wrap gap-2">
                         @foreach ($produitsEnAlerte as $p)
@@ -105,13 +105,13 @@ new #[Layout('layouts.app')] class extends Component
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg overflow-hidden">
                     <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
-                        <h3 class="font-semibold text-gray-800 dark:text-gray-200">Niveaux de stock</h3>
+                        <h3 class="font-semibold text-gray-800 dark:text-gray-200">{{ __('Niveaux de stock') }}</h3>
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead class="bg-gray-50 dark:bg-gray-900/50">
                             <tr>
-                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Produit</th>
-                                <th class="px-4 py-2 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Quantité</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">{{ __('Produit') }}</th>
+                                <th class="px-4 py-2 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">{{ __('Quantité') }}</th>
                                 <th class="px-4 py-2"></th>
                             </tr>
                         </thead>
@@ -123,7 +123,7 @@ new #[Layout('layouts.app')] class extends Component
                                         {{ $produit->quantite_stock }} {{ $produit->unite }}
                                     </td>
                                     <td class="px-4 py-2 text-right">
-                                        <button wire:click="ouvrirAjustement({{ $produit->id }})" class="text-xs text-brand-blue-700 hover:underline">Ajuster</button>
+                                        <button wire:click="ouvrirAjustement({{ $produit->id }})" class="text-xs text-brand-blue-700 hover:underline">{{ __('Ajuster') }}</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -133,15 +133,15 @@ new #[Layout('layouts.app')] class extends Component
 
                 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg overflow-hidden">
                     <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
-                        <h3 class="font-semibold text-gray-800 dark:text-gray-200">Historique des mouvements</h3>
+                        <h3 class="font-semibold text-gray-800 dark:text-gray-200">{{ __('Historique des mouvements') }}</h3>
                     </div>
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead class="bg-gray-50 dark:bg-gray-900/50">
                             <tr>
-                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Date</th>
-                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Produit</th>
-                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Type</th>
-                                <th class="px-4 py-2 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Qté</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">{{ __('Date') }}</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">{{ __('Produit') }}</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">{{ __('Type') }}</th>
+                                <th class="px-4 py-2 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">{{ __('Qté') }}</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -154,16 +154,16 @@ new #[Layout('layouts.app')] class extends Component
                                     </td>
                                     <td class="px-4 py-2 text-sm">
                                         @if ($mouvement->type === 'entree')
-                                            <span class="text-green-600">Entrée</span>
+                                            <span class="text-green-600">{{ __('Entrée') }}</span>
                                         @else
-                                            <span class="text-red-600">Sortie</span>
+                                            <span class="text-red-600">{{ __('Sortie') }}</span>
                                         @endif
                                     </td>
                                     <td class="px-4 py-2 text-sm text-right text-gray-500 dark:text-gray-400">{{ $mouvement->quantite }}</td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="px-4 py-8 text-center text-sm text-gray-500 dark:text-gray-400">Aucun mouvement.</td>
+                                    <td colspan="4" class="px-4 py-8 text-center text-sm text-gray-500 dark:text-gray-400">{{ __('Aucun mouvement.') }}</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -179,33 +179,33 @@ new #[Layout('layouts.app')] class extends Component
     @if ($produitAjustementId)
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" wire:click.self="fermerAjustement">
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-md p-6 space-y-4">
-                <h3 class="font-semibold text-gray-800 dark:text-gray-200">Ajuster le stock</h3>
+                <h3 class="font-semibold text-gray-800 dark:text-gray-200">{{ __('Ajuster le stock') }}</h3>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type de mouvement</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Type de mouvement') }}</label>
                     <select wire:model="ajustementType" class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
-                        <option value="entree">Entrée (réapprovisionnement)</option>
-                        <option value="sortie">Sortie (perte, casse...)</option>
+                        <option value="entree">{{ __('Entrée (réapprovisionnement)') }}</option>
+                        <option value="sortie">{{ __('Sortie (perte, casse...)') }}</option>
                     </select>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Quantité</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Quantité') }}</label>
                     <input type="number" min="1" wire:model="ajustementQuantite"
                            class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                     @error('ajustementQuantite') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Motif</label>
-                    <input type="text" wire:model="ajustementMotif" placeholder="Réapprovisionnement fournisseur..."
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Motif') }}</label>
+                    <input type="text" wire:model="ajustementMotif" placeholder="{{ __('Réapprovisionnement fournisseur...') }}"
                            class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                 </div>
 
                 <div class="flex justify-end gap-3">
-                    <button wire:click="fermerAjustement" class="text-sm text-gray-500 hover:underline">Annuler</button>
+                    <button wire:click="fermerAjustement" class="text-sm text-gray-500 hover:underline">{{ __('Annuler') }}</button>
                     <button wire:click="enregistrerAjustement" class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800">
-                        Valider
+                        {{ __('Valider') }}
                     </button>
                 </div>
             </div>
