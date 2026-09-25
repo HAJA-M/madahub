@@ -2,12 +2,12 @@
 set -e
 
 PORT="${PORT:-80}"
-sed -ri "s/Listen 80/Listen ${PORT}/" /etc/apache2/ports.conf
-sed -ri "s/:80>/:${PORT}>/" /etc/apache2/sites-available/000-default.conf
+sed "s/__PORT__/${PORT}/" /etc/nginx/site.conf.template > /etc/nginx/sites-enabled/default
 
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 php artisan migrate --force
 
-exec apache2-foreground
+php-fpm -D
+exec nginx -g "daemon off;"
