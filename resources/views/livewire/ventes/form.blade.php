@@ -162,7 +162,7 @@ new #[Layout('layouts.app')] class extends Component
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Client *</label>
-                        <select wire:model="client_id" class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                        <select wire:model="client_id" class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                             <option value="">-- Choisir un client --</option>
                             @foreach (\App\Models\Client::orderBy('nom')->get() as $c)
                                 <option value="{{ $c->id }}">{{ $c->nom }}</option>
@@ -173,7 +173,7 @@ new #[Layout('layouts.app')] class extends Component
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Date *</label>
                         <input type="date" wire:model="date_vente"
-                               class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                               class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                         @error('date_vente') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                     </div>
                 </div>
@@ -182,7 +182,7 @@ new #[Layout('layouts.app')] class extends Component
             <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6 space-y-4">
                 <div class="flex items-center justify-between">
                     <h3 class="font-semibold text-gray-800 dark:text-gray-200">Articles</h3>
-                    <button type="button" wire:click="ajouterLigne" class="text-sm text-emerald-600 hover:underline">+ Ajouter une ligne</button>
+                    <button type="button" wire:click="ajouterLigne" class="text-sm text-brand-blue-700 hover:underline">+ Ajouter une ligne</button>
                 </div>
 
                 <div class="space-y-3">
@@ -190,7 +190,7 @@ new #[Layout('layouts.app')] class extends Component
                         <div class="grid grid-cols-12 gap-2 items-start" wire:key="ligne-{{ $index }}">
                             <div class="col-span-5">
                                 <select wire:model.live="lignes.{{ $index }}.produit_id"
-                                        class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 text-sm">
+                                        class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 text-sm">
                                     <option value="">-- Produit --</option>
                                     @foreach (\App\Models\Produit::orderBy('nom')->get() as $p)
                                         <option value="{{ $p->id }}">{{ $p->nom }} ({{ $p->quantite_stock }} {{ $p->unite }} dispo.)</option>
@@ -200,11 +200,11 @@ new #[Layout('layouts.app')] class extends Component
                             </div>
                             <div class="col-span-2">
                                 <input type="number" min="1" wire:model.live.debounce.400ms="lignes.{{ $index }}.quantite" placeholder="Qté"
-                                       class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 text-sm">
+                                       class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 text-sm">
                             </div>
                             <div class="col-span-3">
                                 <input type="number" step="0.01" min="0" wire:model.live.debounce.400ms="lignes.{{ $index }}.prix_unitaire" placeholder="Prix unitaire"
-                                       class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 text-sm">
+                                       class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 text-sm">
                             </div>
                             <div class="col-span-1 pt-2 text-sm text-gray-500 dark:text-gray-400 text-right">
                                 {{ number_format(($ligne['prix_unitaire'] ?? 0) * ($ligne['quantite'] ?? 0), 0, ',', ' ') }}
@@ -224,7 +224,7 @@ new #[Layout('layouts.app')] class extends Component
                     </div>
                     <div class="flex justify-between text-sm items-center">
                         <span class="text-gray-600 dark:text-gray-400">Remise</span>
-                        <input type="number" step="0.01" min="0" wire:model.live.debounce.400ms="remise" class="w-28 text-right rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 text-sm">
+                        <input type="number" step="0.01" min="0" wire:model.live.debounce.400ms="remise" class="w-28 text-right rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500 text-sm">
                     </div>
                     <div class="flex justify-between text-base font-semibold text-gray-900 dark:text-gray-100">
                         <span>Total</span>
@@ -236,12 +236,12 @@ new #[Layout('layouts.app')] class extends Component
             <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-6">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Notes</label>
                 <textarea wire:model="notes" rows="2"
-                          class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"></textarea>
+                          class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500"></textarea>
             </div>
 
             <div class="flex items-center justify-end gap-3">
                 <a href="{{ route('ventes.index', ['type' => $type]) }}" wire:navigate class="text-sm text-gray-500 hover:underline">Annuler</a>
-                <button wire:click="enregistrer" class="inline-flex items-center px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-700">
+                <button wire:click="enregistrer" class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800">
                     Enregistrer le brouillon
                 </button>
             </div>

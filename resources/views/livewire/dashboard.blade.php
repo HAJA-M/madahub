@@ -80,7 +80,7 @@ new #[Layout('layouts.app')] class extends Component
                 </div>
                 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-5">
                     <p class="text-sm text-gray-500 dark:text-gray-400">Bénéfice estimé (ce mois)</p>
-                    <p class="mt-1 text-2xl font-semibold text-emerald-600">{{ number_format($beneficeMois, 0, ',', ' ') }} Ar</p>
+                    <p class="mt-1 text-2xl font-semibold text-brand-blue-700">{{ number_format($beneficeMois, 0, ',', ' ') }} Ar</p>
                 </div>
                 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-5">
                     <p class="text-sm text-gray-500 dark:text-gray-400">Factures validées (ce mois)</p>
@@ -99,7 +99,7 @@ new #[Layout('layouts.app')] class extends Component
                         @foreach ($evolutionMensuelle as $point)
                             <div class="flex-1 flex flex-col items-center justify-end h-full gap-2">
                                 <span class="text-xs text-gray-500 dark:text-gray-400">{{ $point['total'] > 0 ? number_format($point['total'] / 1000, 0) . 'k' : '' }}</span>
-                                <div class="w-full bg-emerald-500 rounded-t-md" style="height: {{ max(4, ($point['total'] / $maxEvolution) * 100) }}%"></div>
+                                <div class="w-full bg-brand-blue-500 rounded-t-md" style="height: {{ max(4, ($point['total'] / $maxEvolution) * 100) }}%"></div>
                                 <span class="text-xs text-gray-500 dark:text-gray-400 capitalize">{{ $point['label'] }}</span>
                             </div>
                         @endforeach

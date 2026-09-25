@@ -64,13 +64,13 @@ new #[Layout('layouts.app')] class extends Component
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom *</label>
                     <input type="text" wire:model="nom"
-                           class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                           class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                     @error('nom') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
-                    <select wire:model="type" class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                    <select wire:model="type" class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                         <option value="particulier">Particulier</option>
                         <option value="entreprise">Entreprise</option>
                     </select>
@@ -80,31 +80,31 @@ new #[Layout('layouts.app')] class extends Component
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
                         <input type="email" wire:model="email"
-                               class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                               class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                         @error('email') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Téléphone</label>
                         <input type="text" wire:model="telephone" placeholder="034 xx xxx xx"
-                               class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                               class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Adresse</label>
                     <input type="text" wire:model="adresse"
-                           class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                           class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Notes</label>
                     <textarea wire:model="notes" rows="3"
-                              class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500"></textarea>
+                              class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500"></textarea>
                 </div>
 
                 <div class="flex items-center justify-end gap-3">
                     <a href="{{ route('clients.index') }}" wire:navigate class="text-sm text-gray-500 hover:underline">Annuler</a>
-                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-700">
+                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800">
                         Enregistrer
                     </button>
                 </div>

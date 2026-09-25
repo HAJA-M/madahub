@@ -178,7 +178,7 @@ new #[Layout('layouts.app')] class extends Component
                         Modifier
                     </a>
                     <button wire:click="valider" wire:confirm="Confirmer la validation ? {{ in_array($vente->type, ['commande','facture']) ? 'Le stock sera décrémenté.' : '' }}"
-                            class="inline-flex items-center px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-700">
+                            class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800">
                         Valider
                     </button>
                     <button wire:click="supprimer" wire:confirm="Supprimer ce brouillon ?" class="text-sm text-red-600 hover:underline">
@@ -186,14 +186,14 @@ new #[Layout('layouts.app')] class extends Component
                     </button>
                 @elseif ($vente->statut === 'validee')
                     @if ($vente->type === 'devis')
-                        <button wire:click="convertir('commande')" class="inline-flex items-center px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-700">
+                        <button wire:click="convertir('commande')" class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800">
                             Convertir en commande
                         </button>
                         <button wire:click="convertir('facture')" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest hover:bg-gray-50">
                             Convertir en facture
                         </button>
                     @elseif ($vente->type === 'commande')
-                        <button wire:click="convertir('facture')" class="inline-flex items-center px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-700">
+                        <button wire:click="convertir('facture')" class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800">
                             Facturer
                         </button>
                     @endif

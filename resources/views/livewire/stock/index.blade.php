@@ -123,7 +123,7 @@ new #[Layout('layouts.app')] class extends Component
                                         {{ $produit->quantite_stock }} {{ $produit->unite }}
                                     </td>
                                     <td class="px-4 py-2 text-right">
-                                        <button wire:click="ouvrirAjustement({{ $produit->id }})" class="text-xs text-emerald-600 hover:underline">Ajuster</button>
+                                        <button wire:click="ouvrirAjustement({{ $produit->id }})" class="text-xs text-brand-blue-700 hover:underline">Ajuster</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -183,7 +183,7 @@ new #[Layout('layouts.app')] class extends Component
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type de mouvement</label>
-                    <select wire:model="ajustementType" class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                    <select wire:model="ajustementType" class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                         <option value="entree">Entrée (réapprovisionnement)</option>
                         <option value="sortie">Sortie (perte, casse...)</option>
                     </select>
@@ -192,19 +192,19 @@ new #[Layout('layouts.app')] class extends Component
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Quantité</label>
                     <input type="number" min="1" wire:model="ajustementQuantite"
-                           class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                           class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                     @error('ajustementQuantite') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Motif</label>
                     <input type="text" wire:model="ajustementMotif" placeholder="Réapprovisionnement fournisseur..."
-                           class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                           class="mt-1 w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                 </div>
 
                 <div class="flex justify-end gap-3">
                     <button wire:click="fermerAjustement" class="text-sm text-gray-500 hover:underline">Annuler</button>
-                    <button wire:click="enregistrerAjustement" class="inline-flex items-center px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-700">
+                    <button wire:click="enregistrerAjustement" class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800">
                         Valider
                     </button>
                 </div>

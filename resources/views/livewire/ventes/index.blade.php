@@ -50,7 +50,7 @@ new #[Layout('layouts.app')] class extends Component
                 {{ __('Ventes') }}
             </h2>
             <a href="{{ route('ventes.create', ['type' => $type]) }}" wire:navigate
-               class="inline-flex items-center px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-700 focus:outline-none transition">
+               class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800 focus:outline-none transition">
                 + Nouveau {{ ['devis' => 'devis', 'commande' => 'commande', 'facture' => 'facture'][$type] }}
             </a>
         </div>
@@ -69,14 +69,14 @@ new #[Layout('layouts.app')] class extends Component
                     @foreach (['devis' => 'Devis', 'commande' => 'Commandes', 'facture' => 'Factures'] as $value => $label)
                         <button wire:click="changerType('{{ $value }}')"
                                 class="px-4 py-2 text-sm font-medium border border-gray-200 dark:border-gray-700 first:rounded-l-md last:rounded-r-md -ml-px first:ml-0
-                                {{ $type === $value ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300' }}">
+                                {{ $type === $value ? 'bg-brand-blue-700 text-white border-brand-blue-700' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300' }}">
                             {{ $label }}
                         </button>
                     @endforeach
                 </div>
                 <input type="text" wire:model.live.debounce.300ms="recherche"
                        placeholder="Rechercher un numéro ou un client..."
-                       class="sm:w-72 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                       class="sm:w-72 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
             </div>
 
             <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg overflow-hidden">
@@ -107,7 +107,7 @@ new #[Layout('layouts.app')] class extends Component
                                     </span>
                                 </td>
                                 <td class="px-4 py-3 text-right text-sm whitespace-nowrap">
-                                    <a href="{{ route('ventes.show', $vente) }}" wire:navigate class="text-emerald-600 hover:underline">Voir</a>
+                                    <a href="{{ route('ventes.show', $vente) }}" wire:navigate class="text-brand-blue-700 hover:underline">Voir</a>
                                 </td>
                             </tr>
                         @empty

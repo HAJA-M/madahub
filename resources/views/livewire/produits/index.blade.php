@@ -62,7 +62,7 @@ new #[Layout('layouts.app')] class extends Component
                 {{ __('Produits') }}
             </h2>
             <a href="{{ route('produits.create') }}" wire:navigate
-               class="inline-flex items-center px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-700 focus:outline-none transition">
+               class="inline-flex items-center px-4 py-2 bg-brand-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-brand-blue-800 focus:outline-none transition">
                 + Nouveau produit
             </a>
         </div>
@@ -79,9 +79,9 @@ new #[Layout('layouts.app')] class extends Component
             <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg p-4 flex flex-col sm:flex-row gap-3">
                 <input type="text" wire:model.live.debounce.300ms="recherche"
                        placeholder="Rechercher un produit (nom, référence)..."
-                       class="flex-1 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-emerald-500 focus:ring-emerald-500">
+                       class="flex-1 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 shadow-sm focus:border-brand-blue-500 focus:ring-brand-blue-500">
                 <label class="inline-flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <input type="checkbox" wire:model.live="alerteUniquement" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500">
+                    <input type="checkbox" wire:model.live="alerteUniquement" class="rounded border-gray-300 text-brand-blue-700 focus:ring-brand-blue-500">
                     Alertes stock uniquement
                 </label>
             </div>
@@ -112,7 +112,7 @@ new #[Layout('layouts.app')] class extends Component
                                     @endif
                                 </td>
                                 <td class="px-4 py-3 text-right text-sm space-x-2 whitespace-nowrap">
-                                    <a href="{{ route('produits.edit', $produit) }}" wire:navigate class="text-emerald-600 hover:underline">Modifier</a>
+                                    <a href="{{ route('produits.edit', $produit) }}" wire:navigate class="text-brand-blue-700 hover:underline">Modifier</a>
                                     @if ($confirmationSuppression === $produit->id)
                                         <button wire:click="supprimer({{ $produit->id }})" class="text-red-600 hover:underline">Confirmer ?</button>
                                         <button wire:click="$set('confirmationSuppression', null)" class="text-gray-400 hover:underline">Annuler</button>
